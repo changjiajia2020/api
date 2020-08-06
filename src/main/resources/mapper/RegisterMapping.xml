@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.fh.dao.RegisterDao">
+
+    <!--根据手机号查询用户名-->
+    <select id="findByIphone" parameterType="java.lang.String" resultType="com.fh.entity.po.Register">
+        <!--vipId 实体类 id ：dao里传进来的 -->
+        select iphone from shop_register2 where iphone = #{iphone}
+    </select>
+
+    <!-- 根据用户名查询-->
+    <select id="findByName" parameterType="java.lang.String" resultType="com.fh.entity.po.Register">
+        <!--vipId 实体类 id ：dao里传进来的 -->
+        select name from shop_register2 where name = #{name}
+    </select>
+
+</mapper>

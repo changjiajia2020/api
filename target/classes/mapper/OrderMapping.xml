@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.fh.dao.OrderDao">
+
+    <!--查询订单-->
+    <select id="queryOrder" parameterType="java.lang.Integer" resultType="com.fh.entity.po.Order">
+        <!--vipId 实体类 id ：dao里传进来的 -->
+        select * from shop_order2 where vipId = #{id}
+    </select>
+
+</mapper>

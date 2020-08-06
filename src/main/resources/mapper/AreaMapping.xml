@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.fh.dao.AreaDao">
+
+    <!--根据id查询地区名称-->
+    <select id="queryAreaNameById" parameterType="java.lang.String" resultType="java.lang.String">
+      select name from shop_area2 where id = #{id}
+    </select>
+
+    <!--查询所有数据-->
+    <select id="queryAreaList" resultType="com.fh.entity.po.Area">
+        select * from shop_area2
+    </select>
+
+</mapper>

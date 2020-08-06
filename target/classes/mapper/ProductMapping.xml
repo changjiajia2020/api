@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.fh.dao.ProductDao">
+
+    <!--根据typeId查询商品-->
+    <select id="queryAllProductByTypeId" parameterType="java.lang.Integer" resultType="com.fh.entity.po.Product">
+        select proId,name,price,imgPath from shop_product2
+        <!--typeId 实体类  #{typeId} dao传过来的   因为这是一个参数，所以可以随便写-->
+        <where>
+            <if test="typeId != null">
+                <!--模糊查询   但是要精确查询呢？-->
+                typeId like CONCAT('%',#{typeId},'%');
+            </if>
+        </where>
+    </select>
+
+    <!--查询商品详情-->
+    <select id="queryProductDetail" parameterType="java.lang.Integer" resultType="com.fh.entity.po.Product">
+        select * from shop_product2 where proId = #{proId}
+    </select>
+
+    <!--修改商品数量-->
+    <update id="updateProductCount">
+        <!--保证 商品的超卖问题    update  add  delete  返回的是：影响数据条数(即：受影响的行)-->
+        update shop_product2 set stock=stock-#{count} where proId=#{id} and stock-#{count}>=0
+    </update>
+
+</mapper>

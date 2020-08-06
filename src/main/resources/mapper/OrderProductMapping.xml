@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.fh.dao.OrderProductDao">
+
+    <!--批量新增订单信息  当有两个参数时，此处可以不用写paramterType-->
+    <insert id="batchAdd">
+        insert  into shop_order_product (productId,count,orderId,payStatus) values
+        <foreach collection="list" separator="," item="pro">
+            (#{pro.productId},#{pro.count},#{oid},#{payStatus})
+        </foreach>
+    </insert>
+
+
+</mapper>
